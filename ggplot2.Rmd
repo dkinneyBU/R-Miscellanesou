@@ -1,0 +1,67 @@
+---
+title: "The Grammar of Graphics (with ggplot2)"
+author: "David Kinney"
+date: "January 4, 2019"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## All Grammatical Elements
+
+Element     | Description
+------------|------------------------------------------------------
+Data        | The dataset being plotted.
+Aesthetics  | The scales onto which we *map* our data.
+Geometries  | The visual elements used for our data.
+Facets      | Plotting small multiples.
+Statistics  | Representations of our data to aid our understanding.
+Coordinates | The space on which the data will be plotted.
+Themes     | All non-data ink.
+
+!Graphical Layers][layers]
+
+# Limitations of the Base plotting function
+1. Plot is not redrawn when adding layering (dangerous!)
+2. Plot is drawn as an image (not an object)
+3. Need to manually add a legend
+4. No unified framework for plotting
+
+```
+** Useful base functions **
+lm() - linear model
+abline() - used to plot a linear model
+lapply() - vectorize over a variable
+
+Example:
+carModel <- lm(mpg ~ wt, data = mtcars)
+abline(carModel, lty = 2)
+lapply(mtcars$cyl, function(x) {
+  abline(lm(mpg ~ wt, mtcars, subset = (cyl == x)), col = x)
+})
+```
+
+
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+[layers]: images/Layers.png
